@@ -1,0 +1,58 @@
+.tournament-hero {
+  height: 90vh;
+  position: relative;
+  display: flex;
+  justify-content: flex-start; /* LEFT content */
+  align-items: center;
+  padding-left: 45px; /* 🔥 GAP FROM LEFT */
+  background-size: cover;
+  background-position: right center; /* 🔥 IMAGE ON RIGHT */
+}
+.pname{
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+
+}
+/* CONTENT CARD ON LEFT */
+.tournament-hero-overlay {
+  max-width: 520px;
+  padding: 36px 40px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.55)
+  );
+  backdrop-filter: blur(8px);
+  color: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+/* TITLE */
+.tournament-hero-overlay h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* LOCATION */
+.location {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+.spacer {
+  height: clamp(40px, 8vh, 120px);
+}
+/* DATES PILL */
+.dates {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(245, 196, 0, 0.15);
+  color: #f5c400;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

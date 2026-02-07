@@ -1,0 +1,189 @@
+/* ================= PAGE ================= */
+.ranking-page {
+  min-height: 100vh;
+  padding: 120px 80px;
+  background: #000;
+  color: #fff;
+}
+
+.ranking-title {
+  text-align: center;
+  font-size: 46px;
+  margin-bottom: 60px;
+}
+
+/* ================= TOP 3 (HORIZONTAL 60x60) ================= */
+.top-three-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 32px;
+  margin: 80px 0 70px;
+}
+
+/* Base card */
+.top-box {
+  width: 150px;
+  height: 190px;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(245, 196, 0, 0.55);
+  box-shadow: 0 0 25px rgba(245, 196, 0, 0.35);
+  transition: all 0.35s ease;
+}
+
+.top-box:hover {
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 0 40px rgba(245, 196, 0, 0.8);
+}
+
+/* Player image */
+.top-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+/* 🥇 Rank 1 (center) */
+.rank-1 {
+  height: 230px;
+  width: 170px;
+  transform: translateY(-22px);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.9);
+}
+
+/* Rank badges */
+.top-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #ffd700, #ffae00);
+  color: #000;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* 👑 Crown for #1 */
+.rank-1::before {
+ 
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-size: 30px;
+  filter: drop-shadow(0 0 8px gold);
+}
+
+.top-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #fff;
+
+  text-align: center;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.6),
+    transparent
+  );
+}
+/* ================= RANKING LIST ================= */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ranking-row {
+  display: grid;
+  grid-template-columns: 70px 1.5fr 1fr;
+  align-items: center;
+  padding: 18px 26px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.ranking-row:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(4px);
+}
+
+.row-rank {
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+/* Player info */
+.row-player {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.row-player img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.row-player strong {
+  font-size: 16px;
+}
+
+.row-player p {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* Stats */
+.row-stats {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  font-size: 14px;
+}
+
+.row-stats span {
+  opacity: 0.85;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .ranking-page {
+    padding: 100px 20px;
+  }
+
+  .ranking-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .row-stats {
+    justify-content: flex-start;
+  }
+}

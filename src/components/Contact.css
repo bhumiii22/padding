@@ -1,0 +1,145 @@
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 100px 60px;
+  background: linear-gradient(180deg, #000, #0c0c0c);
+  color: #fff;
+}
+
+/* ===== LAYOUT ===== */
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===== LEFT INFO ===== */
+.contact-info {
+  flex: 1;
+}
+
+.contact-info h2 {
+  font-size: 54px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.contact-info h2::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #fff, transparent);
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+}
+
+.contact-info p {
+  margin-top: 30px;
+  font-size: 17px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* ===== SOCIAL LINKS ===== */
+.social-links {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.social {
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(255,255,255,0.3);
+}
+
+/* Brand accents */
+.social.instagram { background: linear-gradient(135deg, #f58529, #dd2a7b); color:#fff; }
+.social.twitter { background: #1da1f2; color:#fff; }
+.social.facebook { background: #1877f2; color:#fff; }
+.social.linkedin { background: #0a66c2; color:#fff; }
+
+/* ===== FORM ===== */
+.contact-form {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(14px);
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+.contact-form h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+/* Inputs */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* Button */
+.contact-form button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffffff, #d0d0d0);
+  color: #000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(255,255,255,0.3);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-info h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
