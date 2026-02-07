@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import "./gallery.css"
+import "./Gallery.css"
 
 const players = [
   {
