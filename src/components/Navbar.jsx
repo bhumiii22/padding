@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       {/* Logo */}
-      <div className="nav-logo">PICKLE BALL</div>
+      <div className="nav-logo">PADDLE BALL</div>
 
       {/* Hamburger */}
       <div
@@ -53,6 +53,16 @@ const Navbar = () => {
         >
           Contact
         </NavLink>
+
+        <a
+          href=" https://forms.gle/AzRuoXNA6ZBvFcss5"
+          
+          className="register-btn"
+          onClick={() => setMenuOpen(false)}
+        >
+          Register Now
+        </a>
+
       </div>
     </nav>
   );

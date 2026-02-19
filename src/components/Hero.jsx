@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Center Content */}
       <div className="hero-content">
         <h1 className="hero-title glow-text">
-          BUILT FOR <span>PICKLE BALL</span>
+          BUILT FOR <span className="pdb">PADDLE BALL</span>
         </h1>
 
         <p className="hero-subtitle">

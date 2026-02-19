@@ -85,7 +85,7 @@ export default function TournamentDetails() {
         </div>
 
       </section>
-
+<br></br>
       {/* ================= PLAYERS ================= */}
       <section className="players-section">
         <div className="container">
@@ -100,9 +100,7 @@ export default function TournamentDetails() {
       {/* ================= RANKINGS ================= */}
       <section className="ranking-section">
         <div className="container">
-          <h2 className="section-title">
-            Rankings
-          </h2>
+          
 
           <PlayerRanking tournamentId={id} />
         </div>
