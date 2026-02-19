@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
+  console.log('Navbar component rendering')
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

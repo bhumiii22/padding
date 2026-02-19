@@ -1,6 +1,7 @@
 import "./Hero.css";
 
 const Hero = () => {
+  console.log('Hero component rendering')
   return (
     <section className="hero">
       {/* Background Video */}

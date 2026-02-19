@@ -12,6 +12,7 @@ import Contact from "./components/Contact"
 import Gallery from "./components/Gallery"   // ✅ ADD THIS
 
 const App = () => {
+  console.log('App component rendering')
   return (
     <div>
       <Navbar />

@@ -47,12 +47,24 @@ import "./Tournament.css";
 
 export default function Tournaments() {
   const [tournaments, setTournaments] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     supabase
       .from("tournaments")
       .select("*")
-      .then(({ data }) => setTournaments(data || []));
+      .then(({ data, error }) => {
+        if (error) {
+          console.error("Error fetching tournaments:", error);
+          setError(error.message);
+        } else {
+          setTournaments(data || []);
+        }
+      })
+      .catch(err => {
+        console.error("Unexpected error:", err);
+        setError(err.message);
+      });
   }, []);
 
   return (

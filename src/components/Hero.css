@@ -71,7 +71,7 @@
    TEXT STYLES
 ========================= */
 .h-title {
-  font-size: clamp(75px, 4vw, 36px);
+  font-size: clamp(36px, 4vw, 75px);
   letter-spacing: 4px;
   color: #fff;
   animation: slideDown 1s ease forwards;
