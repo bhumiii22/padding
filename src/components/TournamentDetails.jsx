@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
@@ -10,12 +9,15 @@ import "./TournamentDetails.css";
 export default function TournamentDetails() {
   const { id } = useParams();
   const [tournament, setTournament] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTournament();
+    if (id) fetchTournament();
   }, [id]);
 
   async function fetchTournament() {
+    setLoading(true);
+
     const { data, error } = await supabase
       .from("tournaments")
       .select("*")
@@ -23,40 +25,89 @@ export default function TournamentDetails() {
       .single();
 
     if (error) {
-      console.error(error);
+      console.error("Error fetching tournament:", error.message);
     } else {
       setTournament(data);
     }
+
+    setLoading(false);
   }
 
-  if (!tournament) return <p style={{ color: "#fff" }}>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <p>Loading Tournament...</p>
+      </div>
+    );
+  }
+
+  if (!tournament) {
+    return (
+      <div className="loading-container">
+        <p>Tournament not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <>
-      {/* HERO */}
-     <section
-  className="tournament-hero"
-  style={{
-    backgroundImage: `url(${tournament.image_url || bg})`
-  }}
->
-  <div className="tournament-hero-overlay">
-    <h1>{tournament.name}</h1>
-    <p className="location"> {tournament.location}</p>
-    <span className="dates">
-      {tournament.start_date} → {tournament.end_date}
-    </span>
-  </div>
-</section>
+    <div className="tournament-page">
 
-<div className="spacer"></div>
-<h1 className="pname">Tournaments Players</h1>
+      {/* ================= HERO ================= */}
+      <section className="tournament-hero">
 
-      {/* PLAYERS */}
-      <TournamentPlayers tournamentId={id} />
+        {/* Background */}
+        <img
+          src={tournament.image_url || bg}
+          alt={tournament.name}
+          className="hero-bg"
+        />
 
-      {/* RANKINGS */}
-      <PlayerRanking tournamentId={id} />
-    </>
+        {/* Overlay */}
+        <div className="hero-overlay"></div>
+
+        {/* Content Container */}
+        <div className="container">
+          <div className="hero-content">
+
+            <h1 className="hero-title">
+              {tournament.name}
+            </h1>
+
+            <p className="hero-location">
+              {tournament.location}
+            </p>
+
+            <div className="hero-date">
+              {tournament.start_date} → {tournament.end_date}
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      {/* ================= PLAYERS ================= */}
+      <section className="players-section">
+        <div className="container">
+          <h2 className="section-title">
+            Tournament Players
+          </h2>
+
+          <TournamentPlayers tournamentId={id} />
+        </div>
+      </section>
+
+      {/* ================= RANKINGS ================= */}
+      <section className="ranking-section">
+        <div className="container">
+          <h2 className="section-title">
+            Rankings
+          </h2>
+
+          <PlayerRanking tournamentId={id} />
+        </div>
+      </section>
+
+    </div>
   );
 }

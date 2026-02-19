@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import "./Gallery.css"
 
 const players = [
@@ -6,34 +6,39 @@ const players = [
     name: "Rohan Patel",
     rank: "#2",
     wins: 21,
-    image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80",
+    video:
+      "https://ogvnrmfqjhunlwelxwhb.supabase.co/storage/v1/object/public/gallery-videos/C3027%20(1).mp4",
   },
   {
     name: "Aarav Shah",
     rank: "#1",
     wins: 25,
-    image:
-      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80",
+    video:
+      "https://ogvnrmfqjhunlwelxwhb.supabase.co/storage/v1/object/public/gallery-videos/C3030%20(1).mp4",
   },
   {
     name: "Kunal Mehta",
     rank: "#3",
     wins: 18,
-    image:
-      "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1600&q=80",
+    video:
+      "https://ogvnrmfqjhunlwelxwhb.supabase.co/storage/v1/object/public/gallery-videos/C3044%20(1).mp4",
   },
 ]
 
 const Gallery = () => {
   const [current, setCurrent] = useState(0)
+  const videoRef = useRef(null)
 
+  // Auto move when video ends
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % players.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
+    const video = videoRef.current
+
+    if (video) {
+      video.onended = () => {
+        setCurrent((prev) => (prev + 1) % players.length)
+      }
+    }
+  }, [current])
 
   const prevSlide = () => {
     setCurrent((prev) => (prev - 1 + players.length) % players.length)
@@ -47,10 +52,14 @@ const Gallery = () => {
     <div className="gallery-page">
       {/* SLIDESHOW */}
       <section className="slideshow">
-        <img
-          src={players[current].image}
-          alt={players[current].name}
-          className="slide-img"
+        <video
+          key={current}
+          ref={videoRef}
+          src={players[current].video}
+          autoPlay
+          muted
+          playsInline
+          className="slide-video"
         />
 
         <div className="slide-overlay">
@@ -74,8 +83,19 @@ const Gallery = () => {
       {/* GRID */}
       <section className="gallery-grid">
         {players.map((player, index) => (
-          <div className="gallery-card" key={index}>
-            <img src={player.image} alt={player.name} loading="lazy" />
+          <div
+            className="gallery-card"
+            key={index}
+            onClick={() => setCurrent(index)}
+          >
+            <video
+              src={player.video}
+              muted
+              loop
+              autoPlay
+              playsInline
+            />
+
             <div className="card-overlay">
               <span>
                 {player.name}

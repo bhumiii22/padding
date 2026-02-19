@@ -1,45 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { supabase } from "../supabaseClient";
-// import PlayerProfile from "./PlayerProfile";
-
-// export default function TournamentPlayers() {
-//   const { id } = useParams(); // tournament id
-//   const [players, setPlayers] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     fetchPlayers();
-//   }, [id]);
-
-//   async function fetchPlayers() {
-//     const { data, error } = await supabase
-//       .from("players")
-//       .select("*")
-//       .eq("tournament_id", id);
-
-//     if (error) {
-//       console.error(error);
-//     } else {
-//       setPlayers(data);
-//     }
-//     setLoading(false);
-//   }
-
-//   if (loading) return <p style={{ color: "#fff" }}>Loading players...</p>;
-
-//   return (
-//     <>
-//       {players.length === 0 && (
-//         <p style={{ color: "#fff" }}>No players found</p>
-//       )}
-
-//       {players.map(player => (
-//         <PlayerProfile key={player.id} player={player} />
-//       ))}
-//     </>
-//   );
-// }import { useEffect, useState } from "react";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import PlayerProfile from "./PlayerProfile";
@@ -47,6 +5,7 @@ import PlayerProfile from "./PlayerProfile";
 export default function TournamentPlayers() {
   const [players, setPlayers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchPlayers();
@@ -63,9 +22,9 @@ export default function TournamentPlayers() {
     } else {
       setPlayers(data);
     }
-  }
 
-  if (!players.length) return <p>No players found</p>;
+    setLoading(false);
+  }
 
   const nextPlayer = () => {
     setCurrentIndex((prev) =>
@@ -79,13 +38,20 @@ export default function TournamentPlayers() {
     );
   };
 
+  if (loading) return <p className="players-loading">Loading players...</p>;
+  if (!players.length) return <p className="players-loading">No players found</p>;
+
   return (
-    <PlayerProfile
-      player={players[currentIndex]}
-      onNext={nextPlayer}
-      onPrev={prevPlayer}
-      total={players.length}
-      index={currentIndex}
-    />
+    <div className="players-wrapper">
+      <div className="players-container">
+        <PlayerProfile
+          player={players[currentIndex]}
+          onNext={nextPlayer}
+          onPrev={prevPlayer}
+          total={players.length}
+          index={currentIndex}
+        />
+      </div>
+    </div>
   );
 }
