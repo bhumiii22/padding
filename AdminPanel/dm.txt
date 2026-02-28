@@ -1,0 +1,2 @@
+first run admin panel check the port default 5013 if your is different replace ,
+then frontend run

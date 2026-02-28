@@ -1,0 +1,139 @@
+/* 1. Base Setup & Variables */
+:root {
+  --bg-dark: #0f172a;
+  --sidebar-dark: #1e293b;
+  --accent-blue: #38bdf8;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-dim: #94a3b8;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 2. Layout Container */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 3. Sidebar with Glass Effect */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-dark);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar a {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.sidebar a:hover {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent-blue);
+  transform: translateX(8px); /* Smooth slide-in effect */
+}
+
+.sidebar button {
+  margin-top: auto;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sidebar button:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* 4. Main Content Area */
+.content {
+  flex: 1;
+  padding: 40px;
+  animation: pageEnter 0.8s ease-out;
+}
+
+/* 5. Responsive Grid & Animated Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px); /* Glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--accent-blue);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+  transition: var(--transition);
+}
+
+.card:hover img {
+  opacity: 1;
+}
+
+/* 6. Score Cards (The "Pride" moments) */
+.score-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 24px;
+  margin: 15px 0;
+  border-radius: 18px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
+}
+
+/* 7. Keyframe Animations */
+@keyframes pageEnter {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
