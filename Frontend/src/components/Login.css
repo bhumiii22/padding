@@ -1,0 +1,258 @@
+/* =========================
+   Background Video
+========================= */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+.bg-video,
+.video-overlay {
+  pointer-events: none;
+}
+
+/* =========================
+   Page Container
+========================= */
+.login-container {
+  position: relative;
+  margin-top: 20px;
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  z-index: 2;
+}
+.reg-container{
+   position: relative;
+  margin-top: 80px;
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  z-index: 2;
+}
+/* =========================
+   Glass Card
+========================= */
+.login-card {
+  width: 420px;
+  max-width: 100%;
+  padding: 38px 34px;
+  position: relative;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border-radius: 26px;
+  border: 1px solid rgba(245, 196, 0, 0.4);
+
+  box-shadow:
+    0 0 40px rgba(245, 196, 0, 0.2),
+    0 40px 90px rgba(0, 0, 0, 0.9);
+
+  text-align: center;
+  position: relative;
+}
+
+/* Gold glow outline */
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 26px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(245, 196, 0, 0.5),
+    transparent
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* =========================
+   Title
+========================= */
+.login-card h1 {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #f5c400;
+  margin-bottom: 26px;
+}
+
+/* =========================
+   Form & Inputs
+========================= */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form input {
+  height: 46px;
+  padding: 0 16px;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-form input:focus {
+  border-color: #f5c400;
+  background: rgba(245, 196, 0, 0.05);
+  box-shadow: 0 0 0 2px rgba(245, 196, 0, 0.25);
+}
+
+/* =========================
+   Primary Button
+========================= */
+.login-form button {
+  margin-top: 10px;
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+
+  color: #000;
+  background: linear-gradient(
+    135deg,
+    #fff1a8,
+    #f5c400,
+    #cfa300
+  );
+
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.login-form button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 35px rgba(245, 196, 0, 0.6);
+}
+
+.login-form button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   Footer (Register + Admin)
+========================= */
+.login-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Register text */
+.register-text {
+  font-size: 13px;
+  color: #ddd;
+}
+
+.register-text span {
+  color: #f5c400;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+}
+
+.register-text span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #f5c400;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.register-text span:hover::after {
+  transform: scaleX(1);
+}
+
+/* Admin Button */
+.admin-btn {
+  padding: 9px 22px;
+  font-size: 12.5px;
+  font-weight: 800;
+
+  color: #f5c400;
+  background: transparent;
+
+  border: 1.5px solid rgba(245, 196, 0, 0.7);
+  border-radius: 999px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+  background: rgba(245, 196, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   Error Message
+========================= */
+.error-message {
+  font-size: 13px;
+  color: #ff6b6b;
+  margin-top: 6px;
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 24px;
+  }
+
+  .login-card h1 {
+    font-size: 23px;
+  }
+
+  .login-footer {
+    flex-direction: column;
+    gap: 14px;
+  }
+}

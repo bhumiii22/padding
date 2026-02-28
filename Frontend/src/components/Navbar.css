@@ -219,3 +219,55 @@
     font-size: 15px;
   }
 }
+/* =========================
+   Admin Button
+========================= */
+.admin-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  color: #f5c400;
+  background: transparent;
+
+  border: 1.5px solid rgba(245, 196, 0, 0.6);
+  border-radius: 999px;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.admin-btn:hover {
+  background: rgba(245, 196, 0, 0.15);
+  border-color: #f5c400;
+  transform: translateY(-2px);
+}
+
+/* Active */
+.admin-btn:active {
+  transform: scale(0.96);
+}
+.playerName {
+  font-size: 13px;          /* readable */
+  font-weight: 600;
+  color: #f5c400;
+
+  max-width: 140px;         /* prevent overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  margin-left: 12px;
+}
+@media (max-width: 768px) {
+  .admin-btn {
+    width: 80%;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+  }
+}

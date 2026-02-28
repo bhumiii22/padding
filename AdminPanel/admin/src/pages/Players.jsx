@@ -1,44 +1,40 @@
 import { useEffect, useState } from "react"
+import AdminLayout from "../components/AdminLayout"
 import { supabase } from "../supabaseClient"
+import "./Players.css"
 
 export default function Players() {
+
   const [players, setPlayers] = useState([])
-  const [name, setName] = useState("")
 
   useEffect(() => {
     fetchPlayers()
   }, [])
 
-  async function fetchPlayers() {
-    const { data } = await supabase.from("players").select("*")
-    setPlayers(data || [])
-  }
+  const fetchPlayers = async () => {
+    const { data } =
+      await supabase.from("players").select("*")
 
-  async function addPlayer() {
-    if (!name) return
-    await supabase.from("players").insert([{ name }])
-    setName("")
-    fetchPlayers()
-  }
-
-  async function deletePlayer(id) {
-    await supabase.from("players").delete().eq("id", id)
-    fetchPlayers()
+    setPlayers(data)
   }
 
   return (
-    <div className="page">
+    <AdminLayout>
       <h2>Players</h2>
 
-      <input placeholder="Player name" value={name} onChange={e => setName(e.target.value)} />
-      <button onClick={addPlayer}>Add</button>
+      <div className="grid">
+        {players?.map(p => (
+          <div key={p.id} className="card">
 
-      {players.map(p => (
-        <div key={p.id} className="row">
-          {p.name}
-          <button onClick={() => deletePlayer(p.id)}>Delete</button>
-        </div>
-      ))}
-    </div>
+            <img src={p.image_url} alt={p.name} />
+
+            <h3>{p.name}</h3>
+            <p>{p.country}</p>
+            <p>Rank: {p.ranking}</p>
+
+          </div>
+        ))}
+      </div>
+    </AdminLayout>
   )
 }

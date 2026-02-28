@@ -1,44 +1,39 @@
 import { useEffect, useState } from "react"
+import AdminLayout from "../components/AdminLayout"
 import { supabase } from "../supabaseClient"
-
+import "./Tournaments.css"
 export default function Tournaments() {
+
   const [tournaments, setTournaments] = useState([])
-  const [title, setTitle] = useState("")
 
   useEffect(() => {
-    fetchTournaments()
+    fetchData()
   }, [])
 
-  async function fetchTournaments() {
-    const { data } = await supabase.from("tournaments").select("*")
-    setTournaments(data || [])
-  }
+  const fetchData = async () => {
+    const { data } =
+      await supabase.from("tournaments").select("*")
 
-  async function addTournament() {
-    if (!title) return
-    await supabase.from("tournaments").insert([{ title }])
-    setTitle("")
-    fetchTournaments()
-  }
-
-  async function deleteTournament(id) {
-    await supabase.from("tournaments").delete().eq("id", id)
-    fetchTournaments()
+    setTournaments(data)
   }
 
   return (
-    <div className="page">
+    <AdminLayout>
       <h2>Tournaments</h2>
 
-      <input placeholder="Tournament title" value={title} onChange={e => setTitle(e.target.value)} />
-      <button onClick={addTournament}>Add</button>
+      <div className="grid">
+        {tournaments?.map(t => (
+          <div key={t.id} className="card">
 
-      {tournaments.map(t => (
-        <div key={t.id} className="row">
-          {t.title}
-          <button onClick={() => deleteTournament(t.id)}>Delete</button>
-        </div>
-      ))}
-    </div>
+            <img src={t.image_url} alt={t.name} />
+
+            <h3>{t.name}</h3>
+            <p>{t.location}</p>
+            <p>{t.start_date} → {t.end_date}</p>
+
+          </div>
+        ))}
+      </div>
+    </AdminLayout>
   )
 }

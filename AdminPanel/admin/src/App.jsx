@@ -1,21 +1,62 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom" // 👈 Removed BrowserRouter from here
+
 import Login from "./pages/Login"
-import AdminRoute from "./AdminRoute"
 import Dashboard from "./pages/Dashboard"
 import Players from "./pages/Players"
 import Tournaments from "./pages/Tournaments"
 import Rankings from "./pages/Rankings"
+import AdminRoute from "./AdminRoute"
+import { supabase } from './supabaseClient'
+
 
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
+   
+      <Routes>
+        {/* 🔥 Default route */}
+        <Route path="/" element={<Navigate to="/login" />} />
 
-      <Route path="/" element={<AdminRoute><Dashboard /></AdminRoute>} />
-      <Route path="/players" element={<AdminRoute><Players /></AdminRoute>} />
-      <Route path="/tournaments" element={<AdminRoute><Tournaments /></AdminRoute>} />
-      <Route path="/rankings" element={<AdminRoute><Rankings /></AdminRoute>} />
-    </Routes>
+        {/* Login */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected Admin Routes */}
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/players"
+          element={
+            <AdminRoute>
+              <Players />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/tournaments"
+          element={
+            <AdminRoute>
+              <Tournaments />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/rankings"
+          element={
+            <AdminRoute>
+              <Rankings />
+            </AdminRoute>
+          }
+        />
+      </Routes>
+
   )
 }

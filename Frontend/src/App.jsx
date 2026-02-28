@@ -9,7 +9,9 @@ import Tournaments from "./components/Tournaments"
 import TournamentDetails from "./components/TournamentDetails"
 import TournamentPlayers from "./components/TournamentPlayers"
 import Contact from "./components/Contact"
-import Gallery from "./components/Gallery"   // ✅ ADD THIS
+import Gallery from "./components/Gallery"   
+import PlayerRegister from "./components/PlayerRegister"
+import PlayerLogin from "./components/PlayerLogin"
 
 const App = () => {
   console.log('App component rendering')
@@ -23,14 +25,13 @@ const App = () => {
         <Route path="/ranking" element={<PlayerRanking />} />
         <Route path="/tournaments" element={<Tournaments />} />
 
-        {/* ✅ MAIN TOURNAMENT PAGE */}
         <Route path="/tournaments/:id" element={<TournamentDetails />} />
 
-        {/* ✅ TOURNAMENT PLAYERS PAGE */}
         <Route path="/tournaments/:id/players" element={<TournamentPlayers />} />
 
-        {/* ✅ GALLERY PAGE */}
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/player-register" element={<PlayerRegister />} />
+        <Route path="/player-login" element={<PlayerLogin />} />
 
         <Route path="/contact" element={<Contact />} />
       </Routes>
