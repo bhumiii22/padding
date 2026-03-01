@@ -1,0 +1,157 @@
+/* ===============================
+   Tournament Live Page
+================================ */
+
+.tournament-live {
+  padding: 40px;
+  max-width: 1100px;
+  margin: auto;
+  color: #ffffff;
+}
+
+/* ===============================
+   Header
+================================ */
+
+.tournament-live h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tournament-live h3 {
+  font-size: 18px;
+  opacity: 0.75;
+  margin-bottom: 30px;
+}
+
+/* ===============================
+   Match Card
+================================ */
+
+.match-card {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.9),
+    rgba(10, 10, 10, 0.95)
+  );
+  padding: 22px 26px;
+  border-radius: 18px;
+  margin-bottom: 22px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.75),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* ===============================
+   Match Title
+================================ */
+
+.match-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* LIVE badge */
+.live-dot {
+  color: #00ff88;
+  font-size: 14px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+/* ===============================
+   Score
+================================ */
+
+.score-line {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 14px 0 18px;
+  text-align: center;
+}
+
+.score-line span {
+  color: #00ff88;
+}
+
+/* ===============================
+   Teams
+================================ */
+
+.teams {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.team {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 14px;
+  border-radius: 14px;
+}
+
+.team b {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.team p {
+  font-size: 14px;
+  color: #d9d9d9;
+}
+
+/* ===============================
+   Winner
+================================ */
+
+.winner {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffd369;
+  text-align: center;
+}
+
+/* ===============================
+   Empty State
+================================ */
+
+.empty {
+  opacity: 0.6;
+  font-size: 16px;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 768px) {
+  .tournament-live {
+    padding: 20px;
+  }
+
+  .score-line {
+    font-size: 24px;
+  }
+
+  .teams {
+    flex-direction: column;
+  }
+}

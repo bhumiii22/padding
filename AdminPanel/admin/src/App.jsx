@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom" // 👈 Removed BrowserRouter from here
+import { Routes, Route, Navigate } from "react-router-dom" 
 
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
@@ -7,6 +7,7 @@ import Tournaments from "./pages/Tournaments"
 import Rankings from "./pages/Rankings"
 import AdminRoute from "./AdminRoute"
 import { supabase } from './supabaseClient'
+import MatchDetails from "./pages/MatchDetails"
 
 
 
@@ -56,6 +57,9 @@ export default function App() {
             </AdminRoute>
           }
         />
+        <Route path="/matches/:id" element={<MatchDetails />} />
+
+  
       </Routes>
 
   )

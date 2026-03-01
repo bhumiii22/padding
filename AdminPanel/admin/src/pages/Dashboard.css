@@ -1,111 +1,237 @@
-/* admin.css - Professional Aesthetic */
-
+/* ================= ROOT ================= */
 :root {
-  --gold: #fbbf24;
-  --bg-deep: #0f172a;
-  --glass: rgba(30, 41, 59, 0.4);
-  --border: rgba(255, 255, 255, 0.1);
-  --text-dim: #94a3b8;
+  --bg-dark: #0b0f1a;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --accent: #00ff88;
+  --danger: #ff4d4f;
+  --gold: #ffd700;
+  --text-soft: rgba(255, 255, 255, 0.75);
 }
 
-.dashboard-container { padding: 40px; max-width: 1400px; margin: 0 auto; }
-
-/* Status Tags */
-.status-tag {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  border: 1px solid var(--border);
-}
-.status-tag.live { color: #10b981; border-color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
-.status-tag.idle { color: var(--text-dim); }
-
-/* Scoreboard Panel */
-.glass-panel {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 32px;
+/* ================= CONTAINER ================= */
+.dashboard-container {
   padding: 40px;
-  margin-bottom: 30px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  min-height: 100vh;
+ 
+  color: #fff;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-.score-flex { display: flex; justify-content: space-around; align-items: center; text-align: center; }
-
-.point-box {
-  font-size: 5rem;
-  font-weight: 900;
-  color: white;
-  background: rgba(2, 6, 23, 0.8);
-  padding: 20px 50px;
-  border-radius: 20px;
-  border: 1px solid var(--gold);
-  margin: 15px 0;
-}
-
-.game-count { font-size: 2rem; color: var(--gold); font-weight: 900; }
-
-/* Match Controls */
-.session-controls { display: flex; justify-content: center; margin-top: 40px; }
-.btn-start {
-  background: var(--gold);
-  color: #000;
-  padding: 16px 40px;
-  border-radius: 12px;
-  border: none;
-  font-weight: 900;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-.btn-end {
-  background: transparent;
-  color: #ef4444;
-  border: 1px solid #ef4444;
-  padding: 16px 40px;
-  border-radius: 12px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
-/* Roster Grid */
-.roster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.player-card {
-  background: rgba(15, 23, 42, 0.5);
-  padding: 15px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
+/* ================= HEADER ================= */
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 35px;
 }
 
-.player-card:hover { border-color: var(--gold); }
+.dashboard-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
 
-.mini-assign {
-  background: transparent;
-  border: 1px solid var(--text-dim);
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
+.subtitle {
+  color: var(--text-soft);
+  margin-top: 6px;
+}
+
+/* ================= STATUS TAG ================= */
+.status-tag {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.status-tag.live {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.status-tag.idle {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-soft);
+  border: 1px solid var(--glass-border);
+}
+
+/* ================= GLASS PANEL ================= */
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= INPUT ================= */
+input {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  width: 260px;
+  outline: none;
+  margin-right: 12px;
+}
+
+input::placeholder {
+  color: var(--text-soft);
+}
+
+/* ================= BUTTONS ================= */
+button {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  margin-left: 5px;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
-.mini-assign:hover { background: var(--gold); border-color: var(--gold); color: black; }
 
-.chip {
-  background: rgba(251, 191, 36, 0.1);
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* START */
+.btn-start {
+  background: linear-gradient(135deg, #00ff88, #00c86a);
+  color: #022b18;
+}
+
+.btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 255, 136, 0.4);
+}
+
+/* END / DELETE */
+.btn-end {
+  background: linear-gradient(135deg, #ff4d4f, #c9252d);
+  color: #fff;
+}
+
+.btn-end:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 77, 79, 0.4);
+}
+
+/* ================= SCOREBOARD ================= */
+.score-flex {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 30px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.score-flex h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* VS */
+.divider-vs {
+  font-size: 28px;
+  font-weight: 800;
   color: var(--gold);
-  padding: 4px 12px;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  margin: 0 4px;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+/* POINT BOX */
+.point-box {
+  font-size: 54px;
+  font-weight: 800;
+  text-align: center;
+  margin: 12px 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+}
+
+/* ================= PLAYER CHIP ================= */
+.chip {
+  display: inline-block;
+  padding: 8px 14px;
+  margin: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 14px;
+  border: 1px solid var(--glass-border);
+}
+
+/* ================= SESSION CONTROLS ================= */
+.session-controls {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+/* ================= ROSTER ================= */
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.player-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.player-card span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* TEAM ASSIGN BUTTONS */
+.player-card button {
+  margin: 4px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.player-card button:hover:not(:disabled) {
+  background: var(--accent);
+  color: #022b18;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+
+  .score-flex {
+    grid-template-columns: 1fr;
+  }
+
+  .divider-vs {
+    text-align: center;
+  }
 }
