@@ -34,6 +34,19 @@ const Hero = () => {
         </p>
       </div>
 
+      
+      {/* Register Button */}
+      <div className="register-container">
+        <a
+          href="https://your-register-link.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="register-btn"
+        >
+          Register Now
+        </a>
+      </div>
+
       {/* Scroll Indicator */}
       <div className="scroll-indicator">SCROLL</div>
     </section>
