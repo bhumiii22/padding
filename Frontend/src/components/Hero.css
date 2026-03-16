@@ -190,6 +190,78 @@
   background: #ff8c2a;
   transform: scale(1.05);
 }
+
+.register-container {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+.register-btn {
+  display: inline-block;
+  padding: 14px 34px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #111;
+  text-decoration: none;
+  border-radius: 40px;
+
+  background: linear-gradient(135deg, #fde82a, #ffcc00);
+  box-shadow:
+    0 0 10px rgba(253, 232, 42, 0.6),
+    0 0 25px rgba(253, 232, 42, 0.4);
+
+  transition: all 0.35s ease;
+  animation: registerPulse 2.5s infinite;
+}
+
+/* =========================
+   HOVER EFFECT
+========================= */
+.register-btn:hover {
+  transform: translateY(-4px) scale(1.07);
+  background: linear-gradient(135deg, #fff200, #ffd000);
+
+  box-shadow:
+    0 0 15px rgba(253, 232, 42, 0.9),
+    0 0 40px rgba(253, 232, 42, 0.6);
+}
+
+/* =========================
+   PULSE ANIMATION
+========================= */
+@keyframes registerPulse {
+  0%,100% {
+    box-shadow:
+      0 0 10px rgba(253,232,42,0.6),
+      0 0 25px rgba(253,232,42,0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(253,232,42,0.9),
+      0 0 45px rgba(253,232,42,0.7);
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .register-container {
+    bottom: 85px;
+  }
+
+  .register-btn {
+    padding: 12px 26px;
+    font-size: 14px;
+  }
+}
 /* =========================
    MOBILE FALLBACK
 ========================= */
