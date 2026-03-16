@@ -110,7 +110,7 @@ export default function PlayerRegister() {
 
           <button
             className="admin-btn"
-            onClick={() => (window.location.href = "http://localhost:5173")}
+            onClick={() => (window.location.href = "​https://padding-tvwm.vercel.app/")}
           >
             Admin Panel
           </button>
