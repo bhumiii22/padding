@@ -38,7 +38,7 @@ const Hero = () => {
       {/* Register Button */}
       <div className="register-container">
         <a
-          href="https://your-register-link.com"
+          href="https://forms.gle/AzRuoXNA6ZBvFcss5"
           target="_blank"
           rel="noopener noreferrer"
           className="register-btn"
