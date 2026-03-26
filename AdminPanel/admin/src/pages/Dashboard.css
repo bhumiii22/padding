@@ -9,13 +9,30 @@
   --text-soft: rgba(255, 255, 255, 0.75);
 }
 
-/* ================= CONTAINER ================= */
-.dashboard-container {
-  padding: 40px;
+/* ================= BODY (FORCES SIDE-BY-SIDE LAYOUT) ================= */
+body {
+  display: flex; /* This is the magic that puts your nav and dashboard side-by-side */
+  margin: 0;
+  background-color: var(--bg-dark);
   min-height: 100vh;
- 
   color: #fff;
   font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* NOTE: If your left element (navbar) gets squished, add its class name here to lock its width! 
+  Example:
+  .your-nav-class {
+    width: 260px;
+    flex-shrink: 0;
+  }
+*/
+
+/* ================= CONTAINER ================= */
+.dashboard-container {
+  flex: 1; /* This tells the dashboard to take up all the remaining space on the right */
+  padding: 40px;
+  box-sizing: border-box;
 }
 
 /* ================= HEADER ================= */
@@ -29,6 +46,7 @@
 .dashboard-header h1 {
   font-size: 32px;
   font-weight: 700;
+  margin: 0;
 }
 
 .subtitle {
@@ -103,7 +121,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* START */
 .btn-start {
   background: linear-gradient(135deg, #00ff88, #00c86a);
   color: #022b18;
@@ -114,7 +131,6 @@ button:disabled {
   box-shadow: 0 8px 22px rgba(0, 255, 136, 0.4);
 }
 
-/* END / DELETE */
 .btn-end {
   background: linear-gradient(135deg, #ff4d4f, #c9252d);
   color: #fff;
@@ -140,7 +156,6 @@ button:disabled {
   letter-spacing: 1px;
 }
 
-/* VS */
 .divider-vs {
   font-size: 28px;
   font-weight: 800;
@@ -148,7 +163,6 @@ button:disabled {
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
 }
 
-/* POINT BOX */
 .point-box {
   font-size: 54px;
   font-weight: 800;
@@ -160,7 +174,6 @@ button:disabled {
   border: 1px solid var(--glass-border);
 }
 
-/* ================= PLAYER CHIP ================= */
 .chip {
   display: inline-block;
   padding: 8px 14px;
@@ -171,12 +184,23 @@ button:disabled {
   border: 1px solid var(--glass-border);
 }
 
-/* ================= SESSION CONTROLS ================= */
+/* ================= SESSION CONTROLS (STICKY) ================= */
 .session-controls {
   display: flex;
   justify-content: center;
   gap: 18px;
   margin-top: 25px;
+  margin-bottom: 25px;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  padding: 16px 24px;
+  background: rgba(11, 15, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* ================= ROSTER ================= */
@@ -207,7 +231,6 @@ button:disabled {
   margin-bottom: 12px;
 }
 
-/* TEAM ASSIGN BUTTONS */
 .player-card button {
   margin: 4px;
   padding: 8px 12px;
@@ -221,17 +244,103 @@ button:disabled {
   color: #022b18;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE (MOBILE VIEW) ================= */
 @media (max-width: 768px) {
+  
+  /* Stacks your navbar and dashboard vertically on phones */
+  body {
+    flex-direction: column; 
+  }
+
   .dashboard-container {
-    padding: 20px;
+    padding: 12px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 20px; 
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .status-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .glass-panel {
+    padding: 16px;
+  }
+
+  input {
+    width: 130px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-right: 8px;
+  }
+
+  button {
+    padding: 10px 14px;
+    font-size: 13px;
   }
 
   .score-flex {
-    grid-template-columns: 1fr;
+    gap: 8px; 
+    margin-top: 15px;
+  }
+
+  .score-flex h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .point-box {
+    font-size: 28px;
+    padding: 8px;
+    margin: 6px 0;
   }
 
   .divider-vs {
-    text-align: center;
+    font-size: 18px;
+  }
+
+  .chip {
+    padding: 6px 10px;
+    font-size: 11px;
+    margin: 4px;
+  }
+
+  .session-controls {
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .roster-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .player-card {
+    padding: 12px;
+  }
+
+  .player-card span {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .player-card button {
+    padding: 6px 8px;
+    font-size: 11px;
+    margin: 2px;
   }
 }
