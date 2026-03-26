@@ -126,8 +126,9 @@
 .register-container {
   position: absolute;
   bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  left: 0;
+  text-align: center;
   z-index: 5;
 }
 
@@ -140,6 +141,7 @@
   color: #111;
   text-decoration: none;
   border-radius: 40px;
+  white-space: nowrap;
   background: linear-gradient(135deg, #fde82a, #ffcc00);
   box-shadow:
     0 0 10px rgba(253, 232, 42, 0.6),
@@ -199,8 +201,13 @@
 @media (max-width: 768px) {
   /* Removed the display:none on the video here! */
 
+  .hero {
+    height: 100vh;
+    height: 100svh; /* Solves mobile browser bar cutting off bottom issue */
+  }
+
   .hero-content {
-    top: 50%;
+    top: 48%; /* Adjust center slightly higher */
     width: 90%;
   }
 
@@ -216,7 +223,7 @@
   }
 
   .register-container {
-    bottom: 85px;
+    bottom: 120px; /* Safely above the mobile browser bar and scroll indicator */
   }
 
   .register-btn {

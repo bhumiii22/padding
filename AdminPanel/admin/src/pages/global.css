@@ -24,53 +24,109 @@ body {
 /* 2. Layout Container */
 .admin-container {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
-/* 3. Sidebar with Glass Effect */
+/* 3. Top Navbar with Dynamic Glass Effect */
 .sidebar {
-  width: 260px;
-  background: var(--sidebar-dark);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 30px 20px;
+  width: 100%;
+  height: auto;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255,255,255,0.05);
+  padding: 16px 30px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
-  height: 100vh;
+  z-index: 1000;
 }
 
-.sidebar a {
+.sidebar h2 {
+  color: #fbbf24;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Hamburger Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Nav Menu (Desktop by default) */
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  justify-content: flex-end;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar for nav-menu */
+.nav-menu::-webkit-scrollbar { display: none; }
+.nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
+
+.nav-menu a {
   color: var(--text-dim);
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 12px;
+  padding: 10px 20px;
+  border-radius: 999px; /* Premium Pill shape */
   font-size: 0.95rem;
-  font-weight: 500;
-  transition: var(--transition);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sidebar a:hover {
-  background: rgba(56, 189, 248, 0.1);
+.nav-menu a:hover, 
+.nav-menu a.active {
+  background: rgba(56, 189, 248, 0.15);
   color: var(--accent-blue);
-  transform: translateX(8px); /* Smooth slide-in effect */
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
 }
 
-.sidebar button {
-  margin-top: auto;
-  padding: 12px;
+.nav-menu button {
+  margin-left: 10px;
+  padding: 10px 22px;
   background: rgba(239, 68, 68, 0.1);
   color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 999px;
+  font-weight: 700;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 }
 
-.sidebar button:hover {
+.nav-menu button:hover {
   background: #ef4444;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
 }
 
 /* 4. Main Content Area */
@@ -137,3 +193,73 @@ body {
     transform: translateY(0) scale(1); 
   }
 }
+
+/* 8. Responsive Mobile Navbar */
+@media (max-width: 850px) {
+  .sidebar {
+    padding: 12px 20px;
+  }
+
+  /* Show Hamburger */
+  .menu-toggle {
+    display: flex; 
+  }
+
+  /* Hamburger Animation */
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5.5px, 5.5px);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5.5px, -5.5px);
+  }
+
+  /* Dropdown Menu */
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.97);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    flex-direction: column;
+    padding: 24px;
+    gap: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    
+    /* Reveal Animation using Clip Path or Opacity */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-menu a {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .nav-menu button {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

@@ -1,8 +1,10 @@
-
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useLocation } from "react-router-dom"
 import { supabase } from "../supabaseClient"
 
 export default function AdminLayout({ children }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
 
   const logout = async () => {
     await supabase.auth.signOut()
@@ -15,14 +17,24 @@ export default function AdminLayout({ children }) {
 
       <aside className="sidebar">
         <h2>Admin Panel</h2>
-         <Link to="/admin">Dashboard</Link>
-       
-        <Link to="/players">Players</Link>
-        <Link to="/tournaments">Tournaments</Link>
-        <Link to="/rankings">Rankings</Link>
-        <Link to="/live">Live Scores</Link>
 
-        <button onClick={logout}>Logout</button>
+        {/* Hamburger Toggle */}
+        <div className={`menu-toggle ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        {/* Navigation Links */}
+        <div className={`nav-menu ${menuOpen ? "open" : ""}`}>
+          <Link to="/admin" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+          <Link to="/players" onClick={() => setMenuOpen(false)}>Players</Link>
+          <Link to="/tournaments" onClick={() => setMenuOpen(false)}>Tournaments</Link>
+          <Link to="/rankings" onClick={() => setMenuOpen(false)}>Rankings</Link>
+          <Link to="/live" onClick={() => setMenuOpen(false)}>Live Scores</Link>
+
+          <button onClick={logout}>Logout</button>
+        </div>
       </aside>
 
       <main className="content">

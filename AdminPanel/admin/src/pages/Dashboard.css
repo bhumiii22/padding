@@ -9,24 +9,7 @@
   --text-soft: rgba(255, 255, 255, 0.75);
 }
 
-/* ================= BODY (FORCES SIDE-BY-SIDE LAYOUT) ================= */
-body {
-  display: flex; /* This is the magic that puts your nav and dashboard side-by-side */
-  margin: 0;
-  background-color: var(--bg-dark);
-  min-height: 100vh;
-  color: #fff;
-  font-family: "Inter", system-ui, sans-serif;
-  overflow-x: hidden;
-}
-
-/* NOTE: If your left element (navbar) gets squished, add its class name here to lock its width! 
-  Example:
-  .your-nav-class {
-    width: 260px;
-    flex-shrink: 0;
-  }
-*/
+/* Layout is fully handled by .admin-container in global.css */
 
 /* ================= CONTAINER ================= */
 .dashboard-container {
@@ -232,7 +215,7 @@ button:disabled {
 }
 
 .player-card button {
-  margin: 4px;
+  margin: 0;
   padding: 8px 12px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.12);
@@ -244,103 +227,208 @@ button:disabled {
   color: #022b18;
 }
 
+/* ================= NEW WRAPPER CLASSES ================= */
+.create-match-wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.match-list-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.score-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.player-assign-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
 /* ================= RESPONSIVE (MOBILE VIEW) ================= */
 @media (max-width: 768px) {
-  
-  /* Stacks your navbar and dashboard vertically on phones */
-  body {
-    flex-direction: column; 
-  }
 
   .dashboard-container {
-    padding: 12px;
-  }
-
-  .dashboard-header {
-    margin-bottom: 20px;
-  }
-
-  .dashboard-header h1 {
-    font-size: 20px; 
-  }
-
-  .subtitle {
-    font-size: 12px;
-  }
-
-  .status-tag {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  .glass-panel {
     padding: 16px;
   }
 
-  input {
-    width: 130px;
-    padding: 10px 12px;
+  .dashboard-header {
+    margin-bottom: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 24px; 
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .status-tag {
+    align-self: flex-start;
+    padding: 8px 14px;
     font-size: 13px;
-    margin-right: 8px;
+  }
+
+  .glass-panel {
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+
+  .create-match-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 0;
   }
 
   button {
-    padding: 10px 14px;
-    font-size: 13px;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .match-list-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  .match-list-actions button {
+    width: 100%;
   }
 
   .score-flex {
-    gap: 8px; 
-    margin-top: 15px;
+    grid-template-columns: 1fr;
+    gap: 24px; 
+    margin-top: 20px;
+    position: relative;
+  }
+
+  /* Make the VS divider look nice when stacked */
+  .divider-vs {
+    font-size: 20px;
+    margin: 0 auto;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
   }
 
   .score-flex h3 {
-    font-size: 14px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .point-box {
-    font-size: 28px;
-    padding: 8px;
-    margin: 6px 0;
+    font-size: 56px;
+    padding: 16px;
+    margin: 12px 0;
   }
 
-  .divider-vs {
-    font-size: 18px;
+  .score-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .score-actions button {
+    padding: 14px;
   }
 
   .chip {
-    padding: 6px 10px;
-    font-size: 11px;
+    padding: 8px 12px;
+    font-size: 13px;
     margin: 4px;
   }
 
   .session-controls {
-    gap: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    top: 10px;
-    padding: 12px;
-    border-radius: 12px;
+    flex-direction: row;
+    position: sticky;
+    top: 80px; /* Sits exactly below the top global navbar */
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    z-index: 1000;
+    padding: 8px 10px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 77, 79, 0.15);
+    border-radius: 999px; /* Pill shaped dock */
+    gap: 6px;
+    margin: 0 0 20px 0;
+    justify-content: space-between;
+  }
+  
+  .session-controls button {
+    padding: 12px 4px;
+    font-size: 11px;
+    flex: 1;
+    border-radius: 999px; /* Pill shaped inner buttons */
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+  
+  .session-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 77, 79, 0.4);
   }
 
   .roster-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .player-card {
-    padding: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .player-card span {
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .player-assign-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
   .player-card button {
-    padding: 6px 8px;
-    font-size: 11px;
-    margin: 2px;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
   }
 }

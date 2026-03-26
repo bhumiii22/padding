@@ -420,7 +420,7 @@ export default function Dashboard() {
 
         {/* CREATE MATCH */}
         {!activeMatch && (
-          <div style={{ marginBottom: 30 }}>
+          <div className="create-match-wrapper">
             <input
               value={matchName}
               onChange={(e) => setMatchName(e.target.value)}
@@ -438,7 +438,7 @@ export default function Dashboard() {
             <p><b>Match:</b> {m.name}</p>
             <p><b>Status:</b> {m.status}</p>
 
-            <div style={{ display: "flex", gap: 10 }}>
+            <div className="match-list-actions">
               {m.status === "idle" && (
                 <button onClick={() => startMatch(m.id)} className="btn-start">
                   START
@@ -474,8 +474,10 @@ export default function Dashboard() {
                     <span key={p.player_id} className="chip">{p.players.name}</span>
                   ))}
                   <div className="point-box">{activeMatch.score_a}</div>
-                  <button onClick={() => updateScore("A", +1)}>+ POINT</button>
-                  <button onClick={() => updateScore("A", -1)}>- POINT</button>
+                  <div className="score-actions">
+                    <button onClick={() => updateScore("A", +1)}>+ POINT</button>
+                    <button onClick={() => updateScore("A", -1)}>- POINT</button>
+                  </div>
                 </div>
 
                 <div className="divider-vs">VS</div>
@@ -486,8 +488,10 @@ export default function Dashboard() {
                     <span key={p.player_id} className="chip">{p.players.name}</span>
                   ))}
                   <div className="point-box">{activeMatch.score_b}</div>
-                  <button onClick={() => updateScore("B", +1)}>+ POINT</button>
-                  <button onClick={() => updateScore("B", -1)}>- POINT</button>
+                  <div className="score-actions">
+                    <button onClick={() => updateScore("B", +1)}>+ POINT</button>
+                    <button onClick={() => updateScore("B", -1)}>- POINT</button>
+                  </div>
                 </div>
               </div>
 
@@ -512,7 +516,7 @@ export default function Dashboard() {
                 {players.map(p => (
                   <div key={p.id} className="player-card">
                     <span>{p.name}</span>
-                    <div>
+                    <div className="player-assign-actions">
                       <button disabled={isAssigned(p.id)} onClick={() => assignPlayer(p.id, "A", 1)}>A1</button>
                       <button disabled={isAssigned(p.id)} onClick={() => assignPlayer(p.id, "A", 2)}>A2</button>
                       <button disabled={isAssigned(p.id)} onClick={() => assignPlayer(p.id, "B", 1)}>B1</button>
